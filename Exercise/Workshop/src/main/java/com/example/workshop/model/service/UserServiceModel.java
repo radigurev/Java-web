@@ -1,22 +1,28 @@
-package com.example.workshop.model.entity;
+package com.example.workshop.model.service;
 
+import com.example.workshop.model.entity.Role;
 import com.example.workshop.model.entity.enums.LevelEnum;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table(name = "users")
-public class UserEntity extends BaseEntity{
-
+public class UserServiceModel {
+    private Long id;
     private String fullName,username,password,email;
     private LevelEnum levelEnum;
     private int age;
     private Set<Role> roles;
 
-    public UserEntity() {
+    public UserServiceModel() {
     }
-    @Column(nullable = false,name = "full_name")
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -25,7 +31,6 @@ public class UserEntity extends BaseEntity{
         this.fullName = fullName;
     }
 
-    @Column(nullable = false)
     public String getUsername() {
         return username;
     }
@@ -33,7 +38,7 @@ public class UserEntity extends BaseEntity{
     public void setUsername(String username) {
         this.username = username;
     }
-    @Column(nullable = false)
+
     public String getPassword() {
         return password;
     }
@@ -41,7 +46,7 @@ public class UserEntity extends BaseEntity{
     public void setPassword(String password) {
         this.password = password;
     }
-    @Column
+
     public String getEmail() {
         return email;
     }
@@ -49,8 +54,7 @@ public class UserEntity extends BaseEntity{
     public void setEmail(String email) {
         this.email = email;
     }
-    @Column(name = "level")
-    @Enumerated(EnumType.STRING)
+
     public LevelEnum getLevelEnum() {
         return levelEnum;
     }
@@ -58,20 +62,20 @@ public class UserEntity extends BaseEntity{
     public void setLevelEnum(LevelEnum levelEnum) {
         this.levelEnum = levelEnum;
     }
-    @ManyToMany(fetch = FetchType.EAGER)
-    public Set<Role> getRoles() {
-        return roles;
-    }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-    @Column
     public int getAge() {
         return age;
     }
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

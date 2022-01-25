@@ -1,13 +1,13 @@
-package com.example.workshop.model.entity;
+package com.example.workshop.model.service;
 
+import com.example.workshop.model.entity.Category;
+import com.example.workshop.model.entity.Picture;
+import com.example.workshop.model.entity.UserEntity;
 import com.example.workshop.model.entity.enums.LevelEnum;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table(name = "routes")
-public class road extends BaseEntity{
+public class RouteServiceModel extends BaseServiceModel{
     private LevelEnum levelEnum;
     private String name;
     private String gpxCoordinates;
@@ -17,9 +17,49 @@ public class road extends BaseEntity{
     private Set<Picture> pictures;
     private Set<Category> categories;
 
-    public road() {
+    public RouteServiceModel() {
     }
-    @Column(columnDefinition = "TEXT")
+
+    public LevelEnum getLevelEnum() {
+        return levelEnum;
+    }
+
+    public void setLevelEnum(LevelEnum levelEnum) {
+        this.levelEnum = levelEnum;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGpxCoordinates() {
+        return gpxCoordinates;
+    }
+
+    public void setGpxCoordinates(String gpxCoordinates) {
+        this.gpxCoordinates = gpxCoordinates;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public UserEntity getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserEntity author) {
+        this.author = author;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -28,61 +68,19 @@ public class road extends BaseEntity{
         this.description = description;
     }
 
-    @Column(name = "level")
-    @Enumerated(EnumType.STRING)
-    public LevelEnum getLevelEnum() {
-        return levelEnum;
-    }
-
-    public void setLevelEnum(LevelEnum levelEnum) {
-        this.levelEnum = levelEnum;
-    }
-    @Column(unique = true,nullable = false)
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    @Column(name = "gpx_coordinates",columnDefinition = "LONGTEXT")
-    public String getGpxCoordinates() {
-        return gpxCoordinates;
-    }
-
-    public void setGpxCoordinates(String gpxCoordinates) {
-        this.gpxCoordinates = gpxCoordinates;
-    }
-    @Column(name = "video_url")
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
-    }
-    @ManyToOne
-    public UserEntity getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(UserEntity author) {
-        this.author = author;
-    }
-    @ManyToMany
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
-    @OneToMany(mappedBy = "route",fetch = FetchType.EAGER)
     public Set<Picture> getPictures() {
         return pictures;
     }
 
     public void setPictures(Set<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
