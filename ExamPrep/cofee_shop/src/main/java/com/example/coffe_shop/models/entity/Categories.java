@@ -7,19 +7,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "categories")
 public class Categories extends BaseEntity{
-    private CategoryNameEnum category;
+    private CategoryNameEnum name;
     private Integer neededTime;
 
     public Categories() {
     }
+
     @Enumerated(EnumType.STRING)
-    public CategoryNameEnum getCategory() {
-        return category;
+    public CategoryNameEnum getName() {
+        return name;
     }
 
-    public void setCategory(CategoryNameEnum category) {
-        this.category = category;
+    public void setName(CategoryNameEnum name) {
+        this.name = name;
     }
+
      @Column(nullable = false)
     public Integer getNeededTime() {
         return neededTime;

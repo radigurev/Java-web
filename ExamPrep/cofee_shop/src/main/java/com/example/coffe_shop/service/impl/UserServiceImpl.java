@@ -1,4 +1,4 @@
-package com.example.coffe_shop.service.impl.CategoryServiceImpl;
+package com.example.coffe_shop.service.impl;
 
 import com.example.coffe_shop.models.Service.UserServiceModel;
 import com.example.coffe_shop.models.entity.Users;
@@ -38,5 +38,10 @@ public class UserServiceImpl implements UserService {
     public void loginUser(Long id, String username) {
         currentUser.setId(id);
         currentUser.setUsername(username);
+    }
+
+    @Override
+    public Users findById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 }

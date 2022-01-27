@@ -1,4 +1,4 @@
-package com.example.coffe_shop.service.impl.CategoryServiceImpl;
+package com.example.coffe_shop.service.impl;
 
 import com.example.coffe_shop.models.entity.Categories;
 import com.example.coffe_shop.models.entity.enums.CategoryNameEnum;
@@ -24,14 +24,19 @@ public class CategoryServiceImpl implements CategoryService {
         }
         Arrays.stream(CategoryNameEnum.values()).forEach(categoryNameEnum -> {
             Categories categories=new Categories();
-            categories.setCategory(categoryNameEnum);
+            categories.setName(categoryNameEnum);
             switch (categoryNameEnum){
-                case Cake->categories.setNeededTime(10);
-                case Drink->categories.setNeededTime(1);
-                case Coffee->categories.setNeededTime(2);
-                case Other->categories.setNeededTime(5);
+                case CAKE->categories.setNeededTime(10);
+                case DRINK->categories.setNeededTime(1);
+                case COFFEE->categories.setNeededTime(2);
+                case OTHER->categories.setNeededTime(5);
             }
             categoryRepository.save(categories);
         });
+    }
+
+    @Override
+    public Categories findByCategoryName(CategoryNameEnum categories) {
+        return categoryRepository.findByName(categories).orElse(null);
     }
 }
