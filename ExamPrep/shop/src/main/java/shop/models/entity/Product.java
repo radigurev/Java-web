@@ -1,4 +1,4 @@
-package com.example.coffe_shop.models.entity;
+package shop.models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,19 +8,18 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "orders")
-public class Orders extends BaseEntity{
+@Table(name = "products")
+public class Product extends BaseEntity{
     private String name;
     private String description;
     private BigDecimal price;
-    private LocalDateTime orderTime;
-    private Categories category;
-    private Users users;
+    private LocalDateTime neededBefore;
+    private Category category;
 
-    public Orders() {
+    public Product() {
     }
 
-    @Column(nullable = false)
+    @Column(unique = true)
     public String getName() {
         return name;
     }
@@ -28,7 +27,7 @@ public class Orders extends BaseEntity{
     public void setName(String name) {
         this.name = name;
     }
-    @Column(nullable = false,columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }
@@ -36,7 +35,7 @@ public class Orders extends BaseEntity{
     public void setDescription(String description) {
         this.description = description;
     }
-    @Column(nullable = false)
+    @Column
     public BigDecimal getPrice() {
         return price;
     }
@@ -44,29 +43,20 @@ public class Orders extends BaseEntity{
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-    @Column(nullable = false)
-    public LocalDateTime getOrderTime() {
-        return orderTime;
+    @Column
+    public LocalDateTime getNeededBefore() {
+        return neededBefore;
     }
 
-    public void setOrderTime(LocalDateTime orderTime) {
-        this.orderTime = orderTime;
+    public void setNeededBefore(LocalDateTime neededBefore) {
+        this.neededBefore = neededBefore;
     }
-
     @ManyToOne
-    public Categories getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Categories category) {
+    public void setCategory(Category category) {
         this.category = category;
-    }
-    @ManyToOne
-    public Users getUsers() {
-        return users;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
     }
 }
